@@ -17,9 +17,13 @@ docker-compose up -d
 ### 2. Backend
 ```bash
 cd backend
-pip install -r requirements.txt  # or use pyproject.toml
-python -m app.seed               # Seed 60 sample companies
-uvicorn app.main:app --reload    # Starts on :8000
+# create a virtualenv and activate it, or use uv
+python -m venv .venv && source .venv/bin/activate
+uv sync                       # installs dependencies and updates uv.lock
+# alternatively: python -m pip install -e .
+
+python -m app.seed           # Seed 60 sample companies
+uv run uvicorn app.main:app --reload  # Starts on :8000
 ```
 
 ### 3. Frontend

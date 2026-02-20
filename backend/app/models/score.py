@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, func
 from sqlalchemy.dialects.postgresql import JSONB
-from .database import Base
+from ..database import Base
 
 class Score(Base):
     __tablename__ = "scores"

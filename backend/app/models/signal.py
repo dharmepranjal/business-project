@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey, func
 from sqlalchemy.dialects.postgresql import JSONB
-from .database import Base
+from ..database import Base
 
 class Signal(Base):
     __tablename__ = "signals"
