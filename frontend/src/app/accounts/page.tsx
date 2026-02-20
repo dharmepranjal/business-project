@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Fragment } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Filter, ArrowUpDown, ChevronDown, ChevronRight, X, Download, Radar } from "lucide-react"
 
@@ -146,9 +146,8 @@ export default function AccountsPage() {
                         </thead>
                         <tbody>
                             {filtered.map((acc) => (
-                                <>
+                                <Fragment key={acc.id}>
                                     <tr
-                                        key={acc.id}
                                         onClick={() => setExpandedRow(expandedRow === acc.id ? null : acc.id)}
                                         className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors cursor-pointer group"
                                     >
@@ -184,8 +183,8 @@ export default function AccountsPage() {
                                         </td>
                                         <td className="px-5 py-4">
                                             <span className={`text-[10px] font-bold px-2 py-1 rounded-md ${acc.tier === "T1" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
-                                                    acc.tier === "T2" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                                                        "bg-zinc-700/30 text-zinc-500 border border-zinc-700/30"
+                                                acc.tier === "T2" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
+                                                    "bg-zinc-700/30 text-zinc-500 border border-zinc-700/30"
                                                 }`}>
                                                 {acc.tier}
                                             </span>
@@ -235,7 +234,7 @@ export default function AccountsPage() {
                                             </tr>
                                         )}
                                     </AnimatePresence>
-                                </>
+                                </Fragment>
                             ))}
                         </tbody>
                     </table>
