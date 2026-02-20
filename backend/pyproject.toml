@@ -1,0 +1,25 @@
+[project]
+name = "signalrank-backend"
+version = "0.1.0"
+description = "SignalRank Backend - B2B Account Scoring"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "alembic",
+    "psycopg2-binary",
+    "pydantic-settings",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "spacy",
+    "sentence-transformers",
+    "pulp",
+    "redis",
+    "openai",
+    "httpx",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
