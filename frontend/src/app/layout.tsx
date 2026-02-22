@@ -9,6 +9,9 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 export const metadata: Metadata = {
   title: "Picket | Precision Revenue Timing",
   description: "Identify high-intent accounts with surgical precision.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
