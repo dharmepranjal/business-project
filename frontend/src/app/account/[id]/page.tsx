@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import { Company } from "@/lib/types"
 import companiesData from "@/data/companies.json"
+import { formatINR } from "@/lib/utils"
 
 export default function AccountDetail() {
     const params = useParams()
@@ -152,8 +153,8 @@ export default function AccountDetail() {
 
                         <div className="space-y-8">
                             <ForecastRow label="Historical probability" value={`${(company.closeProbability * 100).toFixed(0)}%`} desc="Based on prior signal success" />
-                            <ForecastRow label="Expected revenue" value={company.expectedRevenueValue >= 1000000 ? `$${(company.expectedRevenueValue / 1000000).toFixed(1)}M` : `$${(company.expectedRevenueValue / 1000).toFixed(0)}K`} desc="Projected next 90 days" />
-                            <ForecastRow label="Estimated deal size" value={company.outcome?.dealSize ? (company.outcome.dealSize >= 1000000 ? `$${(company.outcome.dealSize / 1000000).toFixed(1)}M` : `$${(company.outcome.dealSize / 1000).toFixed(0)}K`) : 'TBD'} desc={company.outcome?.status === 'CLOSED_WON' ? 'Closed-won deal' : 'Estimated range'} />
+                            <ForecastRow label="Expected revenue" value={formatINR(company.expectedRevenueValue)} desc="Projected next 90 days" />
+                            <ForecastRow label="Estimated deal size" value={company.outcome?.dealSize ? formatINR(company.outcome.dealSize) : 'TBD'} desc={company.outcome?.status === 'CLOSED_WON' ? 'Closed-won deal' : 'Estimated range'} />
                         </div>
                     </section>
 

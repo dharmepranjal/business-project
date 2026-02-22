@@ -21,6 +21,7 @@ import {
 import { TrendingUp, DollarSign, Target, Zap, BarChart3, PieChart as PieChartIcon } from "lucide-react"
 import { Company } from "@/lib/types"
 import companiesData from "@/data/companies.json"
+import { formatINR } from "@/lib/utils"
 
 export default function AnalyticsPage() {
     const [data, setData] = useState<Company[]>([])
@@ -62,8 +63,8 @@ export default function AnalyticsPage() {
     return (
         <div className="p-4 md:p-10 space-y-8 md:space-y-12 max-w-[1600px] mx-auto">
             <div className="space-y-1">
-                <p className="text-[11px] font-medium tracking-wide text-brand-accent/80 uppercase">Infrastructure Insights</p>
-                <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">Performance Matrix</h1>
+                <p className="text-[11px] font-medium tracking-wide text-brand-accent/80 uppercase">Picket Intelligence</p>
+                <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">Market Intelligence</h1>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -131,7 +132,7 @@ export default function AnalyticsPage() {
                             </PieChart>
                         </ResponsiveContainer>
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-4xl font-semibold tracking-tighter text-white mono-nums">${totalPipeline >= 1000000 ? `${(totalPipeline / 1000000).toFixed(1)}M` : `${(totalPipeline / 1000).toFixed(0)}K`}</span>
+                            <span className="text-4xl font-semibold tracking-tighter text-white mono-nums">{formatINR(totalPipeline)}</span>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-brand-dim">Pipeline</span>
                         </div>
                     </div>

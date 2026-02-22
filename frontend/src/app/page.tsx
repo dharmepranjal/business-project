@@ -1,10 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Zap, Target, TrendingUp, ShieldCheck, Activity, Search, Database } from "lucide-react"
+import { ArrowRight, Zap, Target, TrendingUp, ShieldCheck, Search, Database } from "lucide-react"
 import Link from "next/link"
 import { Company } from "@/lib/types"
 import companiesData from "@/data/companies.json"
+import { formatINR } from "@/lib/utils"
 
 export default function LandingPage() {
   return (
@@ -14,50 +15,50 @@ export default function LandingPage() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-brand-accent/[0.01] blur-[150px] rounded-full pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="min-h-[90vh] flex flex-col items-center justify-center p-6 text-center max-w-7xl mx-auto pt-20 pb-32">
+      <section className="min-h-[110vh] flex flex-col items-center justify-center p-6 text-center max-w-7xl mx-auto pt-32 pb-40">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-12"
+          className="space-y-16 flex-1 flex flex-col justify-center"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-brand-surface border border-brand-border text-brand-accent text-[11px] font-bold tracking-[0.2em] uppercase shadow-sm">
-            <Activity size={14} className="animate-pulse" /> Live Infrastructure Protocol
-          </div>
+          <div className="space-y-12">
+            <h1 className="text-6xl md:text-[92px] font-semibold tracking-tight leading-[0.9] text-white">
+              Know exactly when <br />
+              <span className="text-brand-accent italic font-medium">they are buying.</span>
+            </h1>
 
-          <h1 className="text-6xl md:text-[92px] font-semibold tracking-tight leading-[0.9] text-white">
-            Know exactly when <br />
-            <span className="text-brand-accent italic font-medium">they are buying.</span>
-          </h1>
+            <p className="text-brand-muted text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium">
+              Deploy revenue-timed intelligence to identify accounts entering high-intent cycles.
+              <br className="hidden md:block" />
+              Track hiring velocity, executive appointments, and stack migrations in real-time.
+            </p>
 
-          <p className="text-brand-muted text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium">
-            Deploy revenue-timed intelligence to identify accounts entering high-intent cycles.
-            Track hiring velocity, executive appointments, and stack migrations in real-time.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
-            <Link
-              href="/dashboard"
-              className="group px-10 py-5 bg-brand-accent text-brand-bg rounded-2xl font-bold text-lg flex items-center gap-3 transition-all shadow-[0_20px_40px_rgba(232,185,49,0.15)] hover:bg-white hover:shadow-[0_25px_50px_rgba(232,185,49,0.25)] active:scale-95"
-            >
-              Open terminal <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/analytics"
-              className="px-10 py-5 bg-transparent border border-brand-border text-brand-text rounded-2xl font-bold text-lg hover:bg-white/[0.03] transition-all"
-            >
-              View evidence
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-10">
+              <Link
+                href="/dashboard"
+                className="group px-10 py-5 bg-brand-accent text-brand-bg rounded-2xl font-bold text-lg flex items-center gap-3 transition-all shadow-[0_20px_40px_rgba(232,185,49,0.15)] hover:bg-white hover:shadow-[0_25px_50px_rgba(232,185,49,0.25)] active:scale-95"
+              >
+                Open terminal <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/analytics"
+                className="px-10 py-5 bg-transparent border border-brand-border text-brand-text rounded-2xl font-bold text-lg hover:bg-white/[0.03] transition-all"
+              >
+                View evidence
+              </Link>
+            </div>
           </div>
         </motion.div>
 
-        {/* Proof Ticker */}
+        {/* Proof Ticker - Now pushed down further */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1.5 }}
-          className="mt-32 w-full grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-brand-border/40 pt-16"
+          className="mt-60 w-full grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-brand-border/40 pt-16"
         >
+
           {(() => {
             const companies = companiesData as Company[]
             const totalSignals = companies.reduce((acc, c) => acc + c.signals.length, 0)
@@ -68,7 +69,7 @@ export default function LandingPage() {
                 <Stat label="Active signals" value={totalSignals.toLocaleString()} />
                 <Stat label="Avg conversion" value={`${avgConv}%`} />
                 <Stat label="Monitored accounts" value={companies.length.toLocaleString()} />
-                <Stat label="Pipeline identified" value={totalPipeline >= 1000000 ? `$${(totalPipeline / 1000000).toFixed(1)}M` : `$${(totalPipeline / 1000).toFixed(0)}K`} />
+                <Stat label="Pipeline identified" value={formatINR(totalPipeline)} />
               </>
             )
           })()}
@@ -105,8 +106,8 @@ export default function LandingPage() {
       <footer className="w-full border-t border-brand-border py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 opacity-50">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center font-bold text-brand-bg italic">SR</div>
-            <span className="font-semibold tracking-tighter text-lg">SignalRank</span>
+            <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center font-bold text-brand-bg italic">P</div>
+            <span className="font-semibold tracking-tighter text-lg">Picket</span>
           </div>
           <p className="text-xs font-medium uppercase tracking-[0.2em]">© 2026 Predictive Timing Lab</p>
         </div>
@@ -137,3 +138,4 @@ function Feature({ icon, title, desc }: { icon: React.ReactNode, title: string, 
     </div>
   )
 }
+

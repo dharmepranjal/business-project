@@ -18,6 +18,7 @@ import {
 } from "lucide-react"
 import { Company, Signal } from "@/lib/types"
 import companiesData from "@/data/companies.json"
+import { formatINR } from "@/lib/utils"
 
 export default function AlertsPage() {
     const [alerts, setAlerts] = useState<{ company: Company, signal: Signal }[]>([])
@@ -112,7 +113,7 @@ function AlertCard({ alert, index, router }: { alert: { company: Company, signal
             <div className="flex items-center gap-10 relative z-10">
                 <div className="text-right space-y-0.5">
                     <p className="text-[10px] font-medium text-brand-dim uppercase tracking-wider">Potential win</p>
-                    <p className="text-lg font-semibold text-brand-text mono-nums tracking-tight group-hover:text-white transition-colors">{alert.company.expectedRevenueValue >= 1000000 ? `$${(alert.company.expectedRevenueValue / 1000000).toFixed(1)}M` : `$${(alert.company.expectedRevenueValue / 1000).toFixed(0)}K`}</p>
+                    <p className="text-lg font-semibold text-brand-text mono-nums tracking-tight group-hover:text-white transition-colors">{formatINR(alert.company.expectedRevenueValue)}</p>
                 </div>
 
                 <div className="w-10 h-10 border border-brand-border rounded-lg flex items-center justify-center text-brand-dim group-hover:text-brand-accent group-hover:border-brand-accent/30 transition-all">

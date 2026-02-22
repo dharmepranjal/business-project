@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { Company } from "@/lib/types"
 import companiesData from "@/data/companies.json"
+import { formatINR } from "@/lib/utils"
 
 export default function Dashboard() {
     const [companies, setCompanies] = useState<Company[]>([])
@@ -72,11 +73,12 @@ export default function Dashboard() {
                 />
                 <KPICard
                     label="Expected pipeline"
-                    value={totalPipeline >= 1000000 ? `$${(totalPipeline / 1000000).toFixed(1)}M` : `$${(totalPipeline / 1000).toFixed(0)}K`}
+                    value={formatINR(totalPipeline)}
                     trend="Est. conversion 22%"
                     icon={<DollarSign className="text-brand-accent/70" size={18} />}
                 />
             </div>
+
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
                 {/* Main Feed: Priority Accounts */}

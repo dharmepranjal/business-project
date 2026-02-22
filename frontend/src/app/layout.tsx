@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "SignalRank | Predictive Revenue Timing",
-  description: "Infrastructure for B2B sales teams to prioritize accounts entering active buying cycles.",
+  title: "Picket | Precision Revenue Timing",
+  description: "Identify high-intent accounts with surgical precision.",
 };
 
 export default function RootLayout({

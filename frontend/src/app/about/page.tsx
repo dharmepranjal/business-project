@@ -22,9 +22,9 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/5 border border-brand-accent/10 text-brand-accent text-[11px] font-bold uppercase tracking-wider">
                     <Info size={14} /> System Manual v1.0
                 </div>
-                <h1 className="text-4xl font-semibold tracking-tight text-white">How to use SignalRank</h1>
+                <h1 className="text-4xl font-semibold tracking-tight text-white">How to use Picket</h1>
                 <p className="text-lg text-brand-muted leading-relaxed font-medium">
-                    SignalRank is a precision instrument for revenue teams. Follow this step-by-step terminal guide to master the infrastructure and identify your next high-intent accounts.
+                    Picket is a precision instrument for revenue teams. Follow this step-by-step terminal guide to master the infrastructure and identify your next high-intent accounts.
                 </p>
             </div>
 
@@ -79,10 +79,11 @@ export default function AboutPage() {
                     number="06"
                     title="Wire Infrastructure Nodes"
                     icon={<Zap className="text-brand-accent" />}
-                    desc="Finally, ensure SignalRank is connected to your existing stack. Go to Integrations to connect Salesforce or HubSpot. This allows the system to push high-scoring accounts directly into your CRM, so your sales team never misses a window."
+                    desc="Finally, ensure Picket is connected to your existing stack. Go to Integrations to connect Salesforce or HubSpot. This allows the system to push high-scoring accounts directly into your CRM, so your sales team never misses a window."
                     link="/integrations"
                     linkLabel="Setup Integrations"
                 />
+
             </div>
 
             {/* Final CTA */}
