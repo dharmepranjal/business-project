@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${mono.variable} font-sans antialiased text-brand-text`}>
+    <html lang="en" className="dark overflow-x-hidden">
+      <body className={`${inter.variable} ${mono.variable} font-sans antialiased text-brand-text overflow-x-hidden`}>
         <div className="flex min-h-screen bg-brand-bg">
           <Sidebar />
 

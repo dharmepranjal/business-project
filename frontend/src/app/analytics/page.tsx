@@ -131,8 +131,10 @@ export default function AnalyticsPage() {
                                 <Tooltip />
                             </PieChart>
                         </ResponsiveContainer>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-4xl font-semibold tracking-tighter text-white mono-nums">{formatINR(totalPipeline)}</span>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-4">
+                            <span className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tighter text-white mono-nums text-center">
+                                {formatINR(totalPipeline)}
+                            </span>
                             <span className="text-[10px] font-bold uppercase tracking-widest text-brand-dim">Pipeline</span>
                         </div>
                     </div>

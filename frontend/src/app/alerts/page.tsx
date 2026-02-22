@@ -92,7 +92,7 @@ function AlertCard({ alert, index, router }: { alert: { company: Company, signal
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
-            className="bg-brand-card border border-brand-border p-6 rounded-xl flex items-center justify-between group hover:border-brand-accent/20 hover:bg-white/[0.01] transition-all cursor-pointer shadow-sm relative overflow-hidden"
+            className="bg-brand-card border border-brand-border p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between group hover:border-brand-accent/20 hover:bg-white/[0.01] transition-all cursor-pointer shadow-sm relative overflow-hidden gap-6 sm:gap-0"
             onClick={() => router.push(`/account/${alert.company.id}`)}
         >
             <div className="flex items-center gap-6 relative z-10">
@@ -110,14 +110,14 @@ function AlertCard({ alert, index, router }: { alert: { company: Company, signal
                 </div>
             </div>
 
-            <div className="flex items-center gap-10 relative z-10">
+            <div className="flex items-center justify-between sm:justify-end gap-10 relative z-10 w-full sm:w-auto">
                 <div className="text-right space-y-0.5">
                     <p className="text-[10px] font-medium text-brand-dim uppercase tracking-wider">Potential win</p>
                     <p className="text-lg font-semibold text-brand-text mono-nums tracking-tight group-hover:text-white transition-colors">{formatINR(alert.company.expectedRevenueValue)}</p>
                 </div>
 
-                <div className="w-10 h-10 border border-brand-border rounded-lg flex items-center justify-center text-brand-dim group-hover:text-brand-accent group-hover:border-brand-accent/30 transition-all">
-                    <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
+                <div className="w-8 h-8 md:w-10 md:h-10 border border-brand-border rounded-lg flex items-center justify-center text-brand-dim group-hover:text-brand-accent group-hover:border-brand-accent/30 transition-all shrink-0">
+                    <ChevronRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
             </div>
         </motion.div>

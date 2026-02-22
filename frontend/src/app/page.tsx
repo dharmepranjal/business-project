@@ -9,7 +9,7 @@ import { formatINR } from "@/lib/utils"
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen bg-brand-bg flex flex-col items-center">
+    <div className="relative min-h-screen bg-brand-bg flex flex-col items-center overflow-x-hidden w-full">
       {/* Background Grain & Gradients */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_20%,rgba(232,185,49,0.05),transparent_70%)]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-brand-accent/[0.01] blur-[150px] rounded-full pointer-events-none" />
@@ -23,12 +23,12 @@ export default function LandingPage() {
           className="space-y-16 flex-1 flex flex-col justify-center"
         >
           <div className="space-y-12">
-            <h1 className="text-6xl md:text-[92px] font-semibold tracking-tight leading-[0.9] text-white">
-              Know exactly when <br />
+            <h1 className="text-4xl sm:text-6xl md:text-[92px] font-semibold tracking-tight leading-[1.1] md:leading-[0.9] text-white">
+              Know exactly when <br className="hidden sm:block" />
               <span className="text-brand-accent italic font-medium">they are buying.</span>
             </h1>
 
-            <p className="text-brand-muted text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium">
+            <p className="text-brand-muted text-base sm:text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-medium px-4">
               Deploy revenue-timed intelligence to identify accounts entering high-intent cycles.
               <br className="hidden md:block" />
               Track hiring velocity, executive appointments, and stack migrations in real-time.
@@ -104,12 +104,12 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="w-full border-t border-brand-border py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 opacity-50">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 opacity-50">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center font-bold text-brand-bg italic">P</div>
             <span className="font-semibold tracking-tighter text-lg">Picket</span>
           </div>
-          <p className="text-xs font-medium uppercase tracking-[0.2em]">© 2026 Predictive Timing Lab</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-center md:text-left">© 2026 Predictive Timing Lab</p>
         </div>
       </footer>
     </div>

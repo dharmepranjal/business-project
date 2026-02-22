@@ -21,7 +21,8 @@ import {
     MapPin,
     Building2,
     Calendar,
-    ArrowUpRight
+    ArrowUpRight,
+    ChevronRight
 } from "lucide-react"
 import { Company, Industry, Region, FundingStage } from "@/lib/types"
 import companiesData from "@/data/companies.json"
@@ -29,6 +30,7 @@ import { formatINR, cn } from "@/lib/utils"
 import { exportLeadsToCSV } from "@/lib/export"
 
 export default function AccountsPage() {
+    const router = useRouter()
     const [companies, setCompanies] = useState<Company[]>([])
     const [search, setSearch] = useState("")
     const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -292,9 +294,10 @@ export default function AccountsPage() {
                     )}
                 </AnimatePresence>
 
-                {/* Accounts Table */}
+                {/* Accounts Table (Desktop) / Cards (Mobile) */}
                 <div className={cn("space-y-4", isFilterOpen ? "hidden lg:block lg:col-span-3" : "block lg:col-span-3")}>
-                    <div className="bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-2xl relative">
+                    {/* Desktop Table View */}
+                    <div className="hidden md:block bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-2xl relative">
                         <div className="overflow-x-auto custom-scrollbar">
                             <table className="w-full text-left border-collapse min-w-[1000px]">
                                 <thead>
@@ -345,6 +348,71 @@ export default function AccountsPage() {
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+
+                    {/* Mobile Card View */}
+                    <div className="md:hidden space-y-4">
+                        {filteredCompanies.length > 0 ? (
+                            filteredCompanies.map((company, idx) => (
+                                <motion.div
+                                    key={company.id}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.05 }}
+                                    className="bg-brand-card border border-brand-border p-5 rounded-2xl space-y-5"
+                                    onClick={() => router.push(`/account/${company.id}`)}
+                                >
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-brand-surface border border-brand-border rounded-lg flex items-center justify-center font-bold text-brand-muted shrink-0">
+                                                {company.name[0]}
+                                            </div>
+                                            <div className="space-y-0.5">
+                                                <h3 className="font-bold text-white text-sm">{company.name}</h3>
+                                                <p className="text-[10px] font-bold text-brand-dim uppercase tracking-wider">{company.industry}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-[9px] font-bold text-brand-dim uppercase tracking-widest">Score</p>
+                                            <p className="text-lg font-bold text-brand-accent mono-nums leading-none">{company.buyingWindowScore}%</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4 pt-2 border-t border-brand-border/40">
+                                        <div className="space-y-0.5">
+                                            <p className="text-[9px] font-bold text-brand-dim uppercase tracking-widest">Est. Value</p>
+                                            <p className="text-xs font-bold text-white mono-nums">{formatINR(company.expectedRevenueValue)}</p>
+                                        </div>
+                                        <div className="space-y-0.5 text-right">
+                                            <p className="text-[9px] font-bold text-brand-dim uppercase tracking-widest">Status</p>
+                                            <span className={cn(
+                                                "text-[9px] font-bold uppercase tracking-widest",
+                                                company.outcome.status === 'CLOSED_WON' ? "text-brand-success" :
+                                                    company.outcome.status === 'QUALIFIED' ? "text-brand-accent" :
+                                                        "text-brand-dim"
+                                            )}>
+                                                {company.outcome.status.replace('_', ' ')}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center justify-between pt-2">
+                                        <div className="flex items-center gap-1.5">
+                                            <MapPin size={10} className="text-brand-dim" />
+                                            <span className="text-[10px] font-bold text-brand-dim uppercase">{company.location}</span>
+                                        </div>
+                                        <div className="flex items-center gap-1 text-[10px] font-bold text-brand-accent uppercase tracking-widest">
+                                            View Report <ChevronRight size={12} />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))
+                        ) : (
+                            <div className="py-20 text-center space-y-4">
+                                <p className="text-white font-semibold">No accounts found</p>
+                                <button onClick={clearFilters} className="text-xs font-bold text-brand-accent uppercase hover:underline">Clear all filters</button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

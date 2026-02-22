@@ -32,7 +32,7 @@ export default function Dashboard() {
     const totalSignals7d = companies.reduce((acc, c) => acc + c.signals.length, 0)
 
     return (
-        <div className="p-4 md:p-10 space-y-8 md:space-y-12 max-w-[1600px] mx-auto">
+        <div className="p-4 md:p-10 space-y-8 md:space-y-12 max-w-[1600px] mx-auto overflow-x-hidden w-full">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
                 <div className="space-y-1">
@@ -52,7 +52,7 @@ export default function Dashboard() {
             </div>
 
             {/* KPI Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                 <KPICard
                     label="Monitored accounts"
                     value={companies.length.toLocaleString()}
@@ -143,7 +143,7 @@ function AccountRow({ account, index }: { account: Company; index: number }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
-            className="bg-brand-card border border-brand-border p-4 rounded-xl flex items-center justify-between group hover:border-brand-accent/20 hover:bg-white/[0.01] transition-all cursor-pointer shadow-sm"
+            className="bg-brand-card border border-brand-border p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between group hover:border-brand-accent/20 hover:bg-white/[0.01] transition-all cursor-pointer shadow-sm gap-4 sm:gap-0"
             onClick={() => router.push(`/account/${account.id}`)}
         >
             <div className="flex items-center gap-5">
@@ -160,7 +160,7 @@ function AccountRow({ account, index }: { account: Company; index: number }) {
                 </div>
             </div>
 
-            <div className="flex items-center gap-10">
+            <div className="flex items-center justify-between sm:justify-end gap-10 w-full sm:w-auto">
                 <div className="hidden md:block space-y-1 text-right">
                     <p className="text-[10px] font-medium text-brand-dim uppercase tracking-wider">Active Triggers</p>
                     <div className="flex gap-1 justify-end">
@@ -180,8 +180,8 @@ function AccountRow({ account, index }: { account: Company; index: number }) {
                     </div>
                 </div>
 
-                <div className="w-10 h-10 border border-brand-border rounded-lg flex items-center justify-center hover:bg-brand-accent-soft group-hover:border-brand-accent/30 transition-all">
-                    <ArrowUpRight size={16} className="text-brand-muted group-hover:text-brand-accent transition-colors" />
+                <div className="w-8 h-8 md:w-10 md:h-10 border border-brand-border rounded-lg flex items-center justify-center hover:bg-brand-accent-soft group-hover:border-brand-accent/30 transition-all shrink-0">
+                    <ArrowUpRight size={14} className="text-brand-muted group-hover:text-brand-accent transition-colors md:w-4 md:h-4" />
                 </div>
             </div>
         </motion.div>

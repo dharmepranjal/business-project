@@ -26,8 +26,8 @@ export default function Sidebar() {
     return (
         <>
             {/* Mobile Header Bar */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border px-4 py-3 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2.5">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border px-4 py-3 flex items-center justify-between overflow-hidden w-full">
+                <Link href="/" className="flex items-center gap-2.5 shrink-0">
                     <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center overflow-hidden">
                         <img src="/logo.png" alt="P" className="w-full h-full object-cover scale-150" />
                     </div>
@@ -35,7 +35,7 @@ export default function Sidebar() {
                 </Link>
                 <button
                     onClick={() => setOpen(!open)}
-                    className="p-2 rounded-lg border border-brand-border bg-brand-card text-brand-muted hover:text-white hover:border-brand-accent/30 transition-all"
+                    className="p-2 rounded-lg border border-brand-border bg-brand-card text-brand-muted hover:text-white hover:border-brand-accent/30 transition-all shrink-0"
                     aria-label="Toggle menu"
                 >
                     {open ? <X size={20} /> : <Menu size={20} />}
@@ -54,7 +54,7 @@ export default function Sidebar() {
             <aside className={`
                 fixed md:sticky top-0 left-0 z-50 md:z-auto
                 ${isCollapsed ? 'w-[72px]' : 'w-64'} border-r border-brand-border h-screen flex flex-col bg-brand-bg select-none
-                transition-all duration-300 ease-in-out
+                transition-transform md:transition-all duration-300 ease-in-out
                 ${open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
             `}>
                 {/* Top: Logo + Toggle Row */}
